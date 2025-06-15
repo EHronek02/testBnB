@@ -1021,6 +1021,8 @@ nav ul li a:hover:after {
     z-index: 1002;
 }
 
+
+
 /* Mobile Navigation Styles */
 @media (max-width: 768px) {
     .mobile-menu-btn {
@@ -1065,4 +1067,69 @@ nav ul li a:hover:after {
     header.scrolled .mobile-menu-btn {
         color: var(--forest-green);
     }
+}
+
+
+/* Enlarge Image on click*/
+/* Lightbox/Modal Styles */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+}
+
+.modal-content {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 2001;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: var(--gold-accent);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.caption {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Add cursor pointer to indicate clickable images */
+.room-img img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.room-img img:hover {
+    transform: scale(1.02);
 }
