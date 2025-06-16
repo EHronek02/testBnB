@@ -138,7 +138,10 @@
                         <h3>The Sunrise Suite</h3>
                         <p>East-facing windows greet you with morning light, while the king-sized canopy bed promises
                             luxurious comfort. Private balcony with mountain views.</p>
-                        <a href="#gallery" class="btn btn-primary">See More Photos</a>
+                        <a href="#" class="btn btn-primary see-more-photos"
+                            data-images='["./images/IMG-20241107-WA0223.jpg", "./images/IMG-20241107-WA0267.jpg", "./images/IMG-20241107-WA0251.jpg"]'
+                            data-alts='["Sunrise Suite - King bed with morning light", "Sunrise Suite - Private balcony view", "Sunrise Suite - Bathroom with soaking tub"]'>See
+                            More Photos</a>
                     </div>
                 </div>
 
@@ -561,7 +564,7 @@
 
                 <!-- Gallery Item 4 -->
                 <div class="gallery-item">
-                    <img src="./images/IMG-20241107-WA0055.jpg" alt="Living room with fireplace">
+                    <img src="./images/IMG-20241107-WA0125.jpg" alt="Living room with fireplace">
                 </div>
 
                 <!-- Gallery Item 5 -->
@@ -582,6 +585,26 @@
                 <!-- Gallery Item 8 -->
                 <div class="gallery-item">
                     <img src="./images/IMG-20241107-WA0091.jpg" alt="Forest room">
+                </div>
+
+                <!-- Gallery Item 9 -->
+                <div class="gallery-item">
+                    <img src="./images/IMG-20241107-WA0187.jpg" alt="Forest room">
+                </div>
+
+                <!-- Gallery Item 10 -->
+                <div class="gallery-item">
+                    <img src="./images/IMG-20241107-WA0073.jpg" alt="Forest room">
+                </div>
+
+                <!-- Gallery Item 11 -->
+                <div class="gallery-item">
+                    <img src="./images/IMG-20241107-WA0075.jpg" alt="Forest room">
+                </div>
+
+                <!-- Gallery Item 12 -->
+                <div class="gallery-item">
+                    <img src="./images/IMG-20241107-WA0077.jpg" alt="Forest room">
                 </div>
             </div>
         </div>
@@ -783,9 +806,21 @@
         <div class="caption"></div>
     </div>
 
-    <script src="./js/index.js">
 
-    </script>
+    <div class="image-modal" id="imageModal">
+        <span class="close-modal">&times;</span>
+        <span class="nav-arrow prev">&lt;</span>
+        <img class="modal-content" id="modalImage">
+        <span class="nav-arrow next">&gt;</span>
+        <div class="caption"></div>
+        <div class="thumbnail-container" id="thumbnailContainer"></div>
+    </div>
+
+
+
+    <script src="./js/index.js"></script>
+    <script src="./js/imageFunc.js"></script>
+
 </body>
 
 </html>

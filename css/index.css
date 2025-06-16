@@ -1133,3 +1133,120 @@ nav ul li a:hover:after {
 .room-img img:hover {
     transform: scale(1.02);
 }
+
+
+/* Lightbox/Modal Styles */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow: auto;
+}
+
+.modal-content {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+    max-height: 70vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    z-index: 2001;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: var(--gold-accent);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.caption {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    transform: translateY(-50%);
+    padding: 20px;
+    z-index: 2001;
+    transition: 0.3s;
+}
+
+.nav-arrow:hover {
+    color: var(--gold-accent);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+.thumbnail-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    border-color: var(--gold-accent);
+}
+
+/* Add cursor pointer to indicate clickable images */
+.room-img img {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.room-img img:hover {
+    transform: scale(1.02);
+}
