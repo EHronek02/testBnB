@@ -2,13 +2,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Get modal elements
     const modal = document.getElementById('imageModal');
-    if (!modal) return;
-    
     const modalImg = document.getElementById('modalImage');
     const captionText = document.querySelector('.caption');
     const closeModal = document.querySelector('.close-modal');
-    const prevArrow = document.querySelector('.nav-arrow.prev');
-    const nextArrow = document.querySelector('.nav-arrow.next');
+    const prevArrow = document.querySelector('.prev');
+    const nextArrow = document.querySelector('.next');
     const thumbnailContainer = document.getElementById('thumbnailContainer');
     
     // Gallery variables
@@ -17,40 +15,62 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentAlts = [];
 
     // Function to open modal with specific image
-    function openModal(imageSrc, altText, imagesArray = [], altsArray = []) {
-        if (!modal || !modalImg || !captionText) return;
-        
+    /* function openModal(imageSrc, altText, imagesArray = [], altsArray = []) {
         modal.style.display = "block";
         modalImg.src = imageSrc;
         captionText.innerHTML = altText;
         document.body.style.overflow = 'hidden';
         
+        // If we have a gallery, set it up
         if (imagesArray.length > 0) {
             currentGallery = imagesArray;
             currentAlts = altsArray;
             currentImageIndex = imagesArray.indexOf(imageSrc);
             
-            // Show navigation arrows if they exist
-            if (prevArrow && nextArrow) {
-                prevArrow.style.display = 'flex';
-                nextArrow.style.display = 'flex';
-            }
+            // Show navigation arrows if multiple images
+            prevArrow.style.display = currentGallery.length > 1 ? 'block' : 'none';
+            nextArrow.style.display = currentGallery.length > 1 ? 'block' : 'none';
             
-            // Create thumbnails if container exists
-            if (thumbnailContainer) {
-                createThumbnails();
-            }
+            // Create thumbnails
+            createThumbnails();
         } else {
             currentGallery = [];
-            if (prevArrow && nextArrow) {
-                prevArrow.style.display = 'none';
-                nextArrow.style.display = 'none';
-            }
-            if (thumbnailContainer) {
-                thumbnailContainer.innerHTML = '';
-            }
+            prevArrow.style.display = 'none';
+            nextArrow.style.display = 'none';
+            thumbnailContainer.innerHTML = '';
+        }
+    } */
+
+
+    // Updated openModal Function
+    function openModal(imageSrc, altText, imagesArray = [], altsArray = []) {
+        modal.style.display = "block";
+        modalImg.src = imageSrc;
+        captionText.innerHTML = altText;
+        document.body.style.overflow = 'hidden';
+        
+        // If we have a gallery, set it up
+        if (imagesArray.length > 0) {
+            currentGallery = imagesArray;
+            currentAlts = altsArray;
+            currentImageIndex = imagesArray.indexOf(imageSrc);
+            
+            // Always show navigation arrows if multiple images
+            prevArrow.style.display = 'flex'; /* Changed from 'block' to 'flex' */
+            nextArrow.style.display = 'flex'; /* Changed from 'block' to 'flex' */
+            
+            // Create thumbnails
+            createThumbnails();
+        } else {
+            currentGallery = [];
+            prevArrow.style.display = 'none';
+            nextArrow.style.display = 'none';
+            thumbnailContainer.innerHTML = '';
         }
     }
+
+
+
 
     // Function to create thumbnails
     function createThumbnails() {
@@ -72,8 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to change image in modal
     function changeImage(index) {
         currentImageIndex = index;
-        if (modalImg) modalImg.src = currentGallery[index];
-        if (captionText) captionText.innerHTML = currentAlts[index];
+        modalImg.src = currentGallery[index];
+        captionText.innerHTML = currentAlts[index];
         
         // Update active thumbnail
         document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
@@ -96,19 +116,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.see-more-photos').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            const images = JSON.parse(this.getAttribute('data-images') || '[]');
-            const alts = JSON.parse(this.getAttribute('data-alts') || '[]');
+            const images = JSON.parse(this.getAttribute('data-images'));
+            const alts = JSON.parse(this.getAttribute('data-alts'));
             openModal(images[0], alts[0], images, alts);
         });
     });
 
     // Close modal when clicking the X
-    if (closeModal) {
-        closeModal.addEventListener('click', function() {
-            modal.style.display = "none";
-            document.body.style.overflow = '';
-        });
-    }
+    closeModal.addEventListener('click', function() {
+        modal.style.display = "none";
+        document.body.style.overflow = '';
+    });
 
     // Close modal when clicking outside the image
     modal.addEventListener('click', function(e) {
@@ -119,23 +137,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Navigation arrows
-    if (prevArrow) {
-        prevArrow.addEventListener('click', function() {
-            if (currentGallery.length <= 1) return;
-            let newIndex = currentImageIndex - 1;
-            if (newIndex < 0) newIndex = currentGallery.length - 1;
-            changeImage(newIndex);
-        });
-    }
+    prevArrow.addEventListener('click', function() {
+        let newIndex = currentImageIndex - 1;
+        if (newIndex < 0) newIndex = currentGallery.length - 1;
+        changeImage(newIndex);
+    });
 
-    if (nextArrow) {
-        nextArrow.addEventListener('click', function() {
-            if (currentGallery.length <= 1) return;
-            let newIndex = currentImageIndex + 1;
-            if (newIndex >= currentGallery.length) newIndex = 0;
-            changeImage(newIndex);
-        });
-    }
+    nextArrow.addEventListener('click', function() {
+        let newIndex = currentImageIndex + 1;
+        if (newIndex >= currentGallery.length) newIndex = 0;
+        changeImage(newIndex);
+    });
 
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
@@ -144,17 +156,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === "Escape") {
             modal.style.display = "none";
             document.body.style.overflow = '';
-        } else if (e.key === "ArrowLeft" && currentGallery.length > 1) {
+        } else if (e.key === "ArrowLeft") {
             let newIndex = currentImageIndex - 1;
             if (newIndex < 0) newIndex = currentGallery.length - 1;
             changeImage(newIndex);
-        } else if (e.key === "ArrowRight" && currentGallery.length > 1) {
+        } else if (e.key === "ArrowRight") {
             let newIndex = currentImageIndex + 1;
             if (newIndex >= currentGallery.length) newIndex = 0;
             changeImage(newIndex);
         }
     });
 
+
+    
+    // Add this to your JavaScript after the existing event listeners
     // Touch events for mobile swipe navigation
     let touchStartX = 0;
     let touchEndX = 0;
@@ -171,15 +186,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
 
     function handleSwipe() {
-        const threshold = 50;
+        const threshold = 50; // Minimum swipe distance
         
         if (touchStartX - touchEndX > threshold) {
-            // Swipe left - next image
+            // Swipe left - go to next image
             let newIndex = currentImageIndex + 1;
             if (newIndex >= currentGallery.length) newIndex = 0;
             changeImage(newIndex);
         } else if (touchEndX - touchStartX > threshold) {
-            // Swipe right - previous image
+            // Swipe right - go to previous image
             let newIndex = currentImageIndex - 1;
             if (newIndex < 0) newIndex = currentGallery.length - 1;
             changeImage(newIndex);

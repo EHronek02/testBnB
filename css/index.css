@@ -1189,7 +1189,7 @@ nav ul li a:hover:after {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-.nav-arrow {
+/* .nav-arrow {
     position: absolute;
     top: 50%;
     color: white;
@@ -1201,7 +1201,30 @@ nav ul li a:hover:after {
     padding: 20px;
     z-index: 2001;
     transition: 0.3s;
+} */
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 40px;
+    /* Slightly smaller for mobile */
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+    transform: translateY(-50%);
+    padding: 15px;
+    z-index: 2001;
+    transition: 0.3s;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 .nav-arrow:hover {
     color: var(--gold-accent);
@@ -1249,4 +1272,29 @@ nav ul li a:hover:after {
 
 .room-img img:hover {
     transform: scale(1.02);
+}
+
+
+@media (max-width: 768px) {
+    .nav-arrow {
+        font-size: 30px;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    /* Make modal image slightly smaller on mobile */
+    .modal-content {
+        max-width: 95%;
+        max-height: 60vh;
+    }
 }
