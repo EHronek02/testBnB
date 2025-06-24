@@ -1350,30 +1350,32 @@ nav ul li a:hover:after {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
+    height: 50px;
 }
 
 /* Logo Image Styling */
 .logo-img {
-    height: 100px;
+    height: 100%;
     /* Adjust based on your design */
     width: auto;
-    transition: transform 0.3s ease;
+    /* transition: transform 0.3s ease; */
+    transition: all 0.3s ease;
 }
 
 /* Logo Text Styling */
 .logo-text {
     font-family: 'Lora', serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--white);
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 /* Scrolled State */
 header.scrolled .logo-img {
-    height: 80px;
+    height: 80%;
     /* Slightly smaller when scrolled */
 }
 
@@ -1384,12 +1386,24 @@ header.scrolled .logo-text {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .logo-img {
+    .logo {
         height: 40px;
+        gap: 8px;
+    }
+
+    .logo-img {
+        /* height: 40px; */
+        min-width: 40px;
+        /* Ensures visibility */
+        max-width: 120px;
+        /* Adjust based on your logo aspect ratio */
     }
 
     .logo-text {
-        font-size: 1.2rem;
+        font-size: 1rem;
+        /* Show text only if there's space */
+        display: none;
+        /* Default hide on mobile */
     }
 
     header.scrolled .logo-img {
@@ -1398,6 +1412,25 @@ header.scrolled .logo-text {
 
     header.scrolled .logo-text {
         font-size: 1.1rem;
+    }
+
+    /* Show text on larger mobile devices in landscape */
+    @media (min-width: 480px) and (max-width: 768px) and (orientation: landscape) {
+        .logo-text {
+            display: inline;
+        }
+    }
+
+}
+
+/* Very small mobile devices */
+@media (max-width: 360px) {
+    .logo {
+        height: 35px;
+    }
+
+    .logo-img {
+        min-width: 35px;
     }
 }
 
