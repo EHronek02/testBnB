@@ -1275,5 +1275,45 @@
         }
       });
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const video = document.querySelector(".home-video");
+        const playButton = document.querySelector(".play-button");
+
+        if (video && playButton) {
+          // Play/Pause on button click
+          playButton.addEventListener("click", function () {
+            if (video.paused) {
+              video.play();
+              playButton.style.display = "none";
+            } else {
+              video.pause();
+              playButton.style.display = "flex";
+            }
+          });
+
+          // Show/hide button on video play/pause
+          video.addEventListener("play", () => {
+            playButton.style.display = "none";
+          });
+
+          video.addEventListener("pause", () => {
+            playButton.style.display = "flex";
+          });
+
+          // Optional: Tap on video toggles play/pause
+          video.addEventListener("touchstart", function (e) {
+            if (video.paused) {
+              video.play();
+              playButton.style.display = "none";
+            } else {
+              video.pause();
+              playButton.style.display = "flex";
+            }
+            e.preventDefault(); // Prevent double-tap zoom
+          });
+        }
+      });
+    </script>
   </body>
 </html>

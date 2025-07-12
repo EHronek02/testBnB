@@ -1677,3 +1677,54 @@ a.logo img:hover {
   width: 30px;
   height: 30px;
 }
+
+@media (max-width: 480px) {
+  .video-wrapper {
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 8px;
+  }
+
+  .home-video {
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(58, 90, 64, 0.1);
+  }
+
+  .play-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .play-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+}
+
+/* Optional: Fix for small device video controls */
+@media (max-width: 768px) {
+  .home-video::-webkit-media-controls {
+    display: flex !important;
+    transform: scale(0.9);
+    transform-origin: center;
+  }
+
+  .home-video::-webkit-media-controls-panel {
+    font-size: 12px;
+  }
+
+  .home-video::-webkit-media-controls-play-button,
+  .home-video::-webkit-media-controls-start-playback-button {
+    background-size: 24px;
+  }
+}
