@@ -191,6 +191,42 @@
       </div>
     </section>
 
+    <!-- Video Tour Section -->
+    <section class="video-tour" id="video">
+      <div class="container">
+        <h2 class="section-title">Step Inside Our World</h2>
+        <p class="section-subtitle">
+          Take a guided video tour through every corner of our home — from the
+          cozy living room to the sunlit dining area and lush outdoor spaces.
+          See what makes Gretchensville truly feel like home.
+        </p>
+        <div class="video-wrapper">
+          <video
+            controls
+            class="home-video"
+            poster="./images/IMG-20241107-WA0155.jpg"
+            playsinline
+          >
+            <source src="./images/bnb_home_tour.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <button class="play-button" aria-label="Play video">
+            <svg viewBox="0 0 64 64" class="play-icon">
+              <circle
+                cx="32"
+                cy="32"
+                r="30"
+                fill="none"
+                stroke="#fff"
+                stroke-width="4"
+              />
+              <polygon points="24,20 44,32 24,44" fill="#fff" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- Why Choose Us Section -->
     <section class="why-choose-us" id="why">
       <div class="container">
@@ -1054,8 +1090,16 @@
               <div class="contact-item">
                 <i class="fas fa-map-marker-alt"></i>
                 <div>
-                  <h4>Address</h4>
-                  <p>123 Mountain View Road<br />Blue Ridge, GA 30513</p>
+                  <h4>Street Address</h4>
+                  <p>Siaya-Luanda Rd <br />opp. Jabalo Gardens</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <h4>Postal Address</h4>
+                  <p>753-40600 Siaya</p>
                 </div>
               </div>
 
@@ -1063,7 +1107,7 @@
                 <i class="fas fa-phone-alt"></i>
                 <div>
                   <h4>Phone</h4>
-                  <p>(706) 555-0123</p>
+                  <p>+254727285014</p>
                 </div>
               </div>
 
@@ -1071,7 +1115,7 @@
                 <i class="fas fa-envelope"></i>
                 <div>
                   <h4>Email</h4>
-                  <p>hello@serenehaven.com</p>
+                  <p>info@gretchensvillehome.com</p>
                 </div>
               </div>
             </div>
@@ -1202,5 +1246,34 @@
 
     <script src="./js/index.js"></script>
     <script src="./js/imageFunc.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const video = document.querySelector(".home-video");
+        const playButton = document.querySelector(".play-button");
+
+        if (video && playButton) {
+          // Show play button only when video is paused
+          playButton.addEventListener("click", function () {
+            if (video.paused) {
+              video.play();
+              playButton.style.display = "none";
+            } else {
+              video.pause();
+              playButton.style.display = "flex";
+            }
+          });
+
+          // Hide play button when video starts playing
+          video.addEventListener("play", () => {
+            playButton.style.display = "none";
+          });
+
+          // Show play button again if video is paused
+          video.addEventListener("pause", () => {
+            playButton.style.display = "flex";
+          });
+        }
+      });
+    </script>
   </body>
 </html>
